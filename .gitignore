@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+dist
+
+# Node.js / NPM
+*.seed
+*.log
+npm-debug.log
+
+
+# Other
+.DS_STORE
+.idea
+package-lock.json

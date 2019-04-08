@@ -1,0 +1,31 @@
+.l-container {
+    margin: 0 auto;
+
+    display: block;
+    max-width: 1366px;
+}
+
+.l-content {
+    padding: 0 70px;
+}
+
+
+
+// # Media
+@include res(768px, 1200px) {
+    .l-content {
+        padding: 0 60px;
+    }
+}
+
+@include res(415px, 767px) {
+    .l-content {
+        padding: 0 32px;
+    }
+}
+
+@include res-to(414px) {
+    .l-content {
+        padding: 0 16px;
+    }
+}
