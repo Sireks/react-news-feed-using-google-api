@@ -1,7 +1,9 @@
 'use strict';
 
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const Path = {
     src: path.join(__dirname, 'src'),
@@ -9,7 +11,7 @@ const Path = {
 };
 
 const config = {
-    entry:  Path.src + '/js/index.js',
+    entry: Path.src + '/js/index.js',
     output: {
         path: Path.dist,
         filename: '[name].js',
@@ -22,8 +24,7 @@ const config = {
         extensions: ['*', '.js', '.jsx']
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: 'babel-loader'
@@ -48,8 +49,23 @@ const config = {
     },
     plugins: [
         new ExtractTextPlugin(path.join(Path.dist, 'index.css')),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        })
     ],
+    optimization: {
+        minimizer: [new UglifyJsPlugin({
+            parallel: true,
+        })],
+    },
     devtool: 'inline-cheap-module-source-map',
+    devServer: {
+        contentBase: Path.dist,
+        compress: true,
+        port: 9000,
+    }
 }
 
 module.exports = config;

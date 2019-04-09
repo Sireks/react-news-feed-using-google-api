@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/webpack --mode production",
+    "serve": "webpack-dev-server --open",
     "watch": "./node_modules/.bin/webpack --mode development --watch"
   },
   "author": "Tkachenko Sergey",
@@ -33,6 +34,7 @@
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
