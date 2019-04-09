@@ -16,6 +16,11 @@ npm install
 npm run build
 ```
 
+Use command bellow to start webpack server running:
+```bash
+npm run serve
+```
+
 If you want to write some code, just start npm watcher:
 
 ```bash

@@ -3,14 +3,19 @@
   "description": "Boilerplate for React app",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "Tkachenko Sergey",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sireks/react-news-feed-using-google-api.git"
+  },
   "scripts": {
     "build": "./node_modules/.bin/webpack --mode production",
     "serve": "webpack-dev-server --open",
     "watch": "./node_modules/.bin/webpack --mode development --watch"
   },
-  "author": "Tkachenko Sergey",
-  "license": "ISC",
   "devDependencies": {
+    "@babel/polyfill": "^7.4.3",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
@@ -27,14 +32,13 @@
     "react-hot-loader": "^4.8.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.3",
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0"
   },
