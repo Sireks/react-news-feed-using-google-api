@@ -10,6 +10,8 @@ const Path = {
     dist: path.join(__dirname, 'dist')
 };
 
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
 const config = {
     entry: Path.src + '/js/index.js',
     output: {
@@ -60,7 +62,7 @@ const config = {
             parallel: true,
         })],
     },
-    devtool: 'inline-cheap-module-source-map',
+    devtool: (NODE_ENV == 'development') ? 'inline-cheap-module-source-map' : false,
     devServer: {
         contentBase: Path.dist,
         compress: true,

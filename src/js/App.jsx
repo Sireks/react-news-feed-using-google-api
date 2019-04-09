@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import NewsList from './components/newsList/NewsList';
+import Preloader from './components/preloader/Preloader'
 
 export default class App extends Component {
     constructor() {
@@ -29,7 +30,7 @@ export default class App extends Component {
                         </div>
                     </section>
                 ) : (
-                    <div className="loader">Loading...</div>
+                    <Preloader />
                 )}
             </Fragment>
         )
@@ -44,7 +45,7 @@ export default class App extends Component {
             `&pageSize=${pageSize}` +
             `${(newsItems.length > 0) ? '&page=' + (Math.ceil(newsItems.length / pageSize) + 1) : ''}` +
             '&sortBy=popularity' +
-            `&apiKey=${apiKey}`
+            `&apiKey=${apiKey}`;
 
         fetch(new Request(url))
             .then(response => response.json())
