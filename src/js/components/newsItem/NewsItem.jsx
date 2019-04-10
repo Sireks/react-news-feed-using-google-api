@@ -34,7 +34,7 @@ export default class NewsItem extends Component {
 
                 <div className="news-item__content">
                     <h2 className="news-item__title">{title}</h2>
-                    <p className="news-item__desc">{(description.length > 100) ? description.substring(0, 100) + '...': description}</p>
+                    <p className="news-item__desc">{(description && description.length > 100) ? description.substring(0, 100) + '...': description}</p>
 
                     { (source && source.name) ? (
                         <div className="news-item__info">

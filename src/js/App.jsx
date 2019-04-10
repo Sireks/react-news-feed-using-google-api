@@ -25,8 +25,12 @@ export default class App extends Component {
                     <section className="news l-container">
                         <div className="l-content u-center">
                             <NewsList newsItems={ newsItems }/>
-                            
-                            <div className="button" onClick={ () => this.fetchGoogleNews(2) }>Load more</div>
+
+                            {
+                                (newsItems.length < 30) ?
+                                    <div className="button" onClick={ () => this.fetchGoogleNews(2) }>Load more</div> :
+                                    ''
+                            }
                         </div>
                     </section>
                 ) : (
@@ -36,26 +40,20 @@ export default class App extends Component {
         )
     }
 
-    fetchGoogleNews(pageSize) {
+    async fetchGoogleNews(pageSize) {
         const { newsItems } = this.state;
 
         const apiKey = 'beb15859411c43359276f35d0e3e56a3';
-        const url = 'https://newsapi.org/v2/everything?' +
-            'q=frontend' +
+        const url = 'https://newsapi.org/v2/top-headlines?country=ua' +
             `&pageSize=${pageSize}` +
             `${(newsItems.length > 0) ? '&page=' + (Math.ceil(newsItems.length / pageSize) + 1) : ''}` +
-            '&sortBy=popularity' +
             `&apiKey=${apiKey}`;
 
-        fetch(new Request(url))
-            .then(response => response.json())
-            .then(responseData => {
-                const {newsItems} = this.state;
-                const {articles} = responseData;
+        const response = await fetch(new Request(url));
+        const responseData = await response.json();
 
-                this.setState({
-                    newsItems: [...newsItems, ...articles]
-                })
-            });
+        this.setState({
+            newsItems: [...newsItems, ...responseData.articles]
+        })
     }
 }

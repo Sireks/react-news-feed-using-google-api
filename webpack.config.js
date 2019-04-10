@@ -1,9 +1,10 @@
 'use strict';
 
+
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const Path = {
     src: path.join(__dirname, 'src'),
@@ -13,7 +14,7 @@ const Path = {
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const config = {
-    entry: Path.src + '/js/index.js',
+    entry: ['@babel/polyfill', Path.src + '/js/index.js'],
     output: {
         path: Path.dist,
         filename: '[name].js',
@@ -58,9 +59,7 @@ const config = {
         })
     ],
     optimization: {
-        minimizer: [new UglifyJsPlugin({
-            parallel: true,
-        })],
+        minimizer: [new TerserPlugin()],
     },
     devtool: (NODE_ENV == 'development') ? 'inline-cheap-module-source-map' : false,
     devServer: {
